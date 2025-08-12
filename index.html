@@ -149,11 +149,6 @@
         }
     </style>
 </head>
-        
-        
-        
-        
-        
 <body>
     <div class="container">
         <div class="header">
@@ -164,14 +159,14 @@
         
         <div class="controls">
             <div class="dropdown-container">
-                <label for="chartType">Chart Type:</label>
+                <label for="chartType">Select a chart to view:</label>
                 <select id="chartType">
-                    <option value="doughnut">Doughnut Chart</option>
-                    <option value="sunburst">Sunburst Chart</option>
+                    <option value="doughnut">Total Count</option>
+                    <option value="sunburst">Marine vs. Nonmarine</option>
                 </select>
             </div>
             <div class="dropdown-container">
-                <label for="rockTypeFilter">Filter by Rock Type:</label>
+                <label for="rockTypeFilter">Specific facies:</label>
                 <select id="rockTypeFilter">
                     <option value="all">All Types</option>
                     <option value="Nonmarine coarse siltstone">Nonmarine coarse siltstone</option>
@@ -208,11 +203,6 @@
             </div>
         </div>
     </div>
-
-    
-    
-    
-    
     <script>
         let faciesTypes = [
             'Nonmarine coarse siltstone',
@@ -351,7 +341,7 @@
         }
         
         function createSunburstChart(ctx, typeCounts) {
-            // Categorize facies into Marine and Nonmarine
+            // cat into marine/nonmarine
             const marineTypes = {};
             const nonmarineTypes = {};
             
@@ -361,7 +351,7 @@
                 } else if (type.toLowerCase().includes('nonmarine')) {
                     nonmarineTypes[type] = count;
                 } else {
-                    // For types that don't clearly specify, categorize based on rock type
+                    // vague/not mentioned? cat based on rock type
                     if (type.includes('Packstone') || type.includes('Wackestone') || 
                         type.includes('Mudstone') || type.includes('Dolomite') || 
                         type.includes('bafflestone')) {
@@ -372,38 +362,38 @@
                 }
             });
             
-            // Create the outer ring data (specific facies)
+            // outer ring data -- specs
             const outerLabels = [];
             const outerData = [];
             const outerColors = [];
             
-            // Create the inner ring data (environment categories)
+            // inner ring data -- mar/nonmar
             const innerData = [];
             const innerLabels = [];
             const innerColors = [];
             
-            // Add marine facies
+            // marine
             Object.entries(marineTypes).forEach(([type, count]) => {
                 outerLabels.push(type);
                 outerData.push(count);
-                outerColors.push('#3b82f6'); // Blue for marine facies
+                outerColors.push('#3b82f6');
                 
-                // Corresponding inner ring segment
+                // ~ inner ring segment
                 innerData.push(count);
                 innerLabels.push('Marine');
-                innerColors.push('#1e40af'); // Darker blue for marine environment
+                innerColors.push('#1e40af');
             });
             
-            // Add nonmarine facies
+            // nonmarine
             Object.entries(nonmarineTypes).forEach(([type, count]) => {
                 outerLabels.push(type);
                 outerData.push(count);
-                outerColors.push('#ef4444'); // Red for nonmarine facies
+                outerColors.push('#ef4444');
                 
-                // Corresponding inner ring segment
+                // ~ inner ring segment
                 innerData.push(count);
                 innerLabels.push('Nonmarine');
-                innerColors.push('#dc2626'); // Darker red for nonmarine environment
+                innerColors.push('#dc2626');
             });
             
             chart = new Chart(ctx, {
@@ -503,6 +493,5 @@
 
     </script>
     <p style = "text-align: center;" class="text"><br>Special thanks to Brad Martin and SLB for this opportunity<br>and help along the way.</p>
-
 </body>
 </html>
