@@ -15,7 +15,7 @@
         }
         
         body {        
-            font-family: 'Montserrat', Verdana, sans-serif;
+            font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #8B1538 0%, #5D5D5D 100%);
             min-height: 100vh;
             padding: 20px;
