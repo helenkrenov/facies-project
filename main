@@ -82,6 +82,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             min-width: 200px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         select:focus {
